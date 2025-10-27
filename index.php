@@ -9,7 +9,7 @@
 <body>
     
     <div class="container">
-        <form method="post" action="crud.php" enctype="multipart/form-data">
+        <form method="post" action="conexionBD.php" enctype="multipart/form-data">
 
             <h2>¡Añade una nueva receta!</h2>
 
@@ -42,9 +42,6 @@
                 <option>Intermedio</option>
                 <option>Dificil</option>
             </select>
-
-            <label for="imagen">Puedes subir una imagen de tu receta aquí:</label>
-            <input type="file" name="imagen" accept="image/*">
 
             <button type="submit" name="crear">Crear</button>
 
