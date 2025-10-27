@@ -6,6 +6,7 @@
         die("Error de conexion a la base de datos");
     }
 
+    //create
     if (isset($_POST['crear'])){
 
         $nombre = $_POST['nombre'];
@@ -32,6 +33,25 @@
                 </script>";
         }
     }
+
+    //read
+    $query = "SELECT * FROM recetas ORDER BY id_receta DESC";
+    $result = pg_query($connection, $query);
+
+    if ($result && pg_num_rows($result) > 0) {
+        while ($row = pg_fetch_assoc($result)) {
+            echo "<div class='receta-item'>";
+            echo "<h3>" . htmlspecialchars($row['nombre']) . "</h3>";
+            echo "<p><strong>Tipo:</strong> " . htmlspecialchars($row['tipo']) . "</p>";
+            echo "<p><strong>Tiempo:</strong> " . htmlspecialchars($row['tiempo']) . " min</p>";
+            echo "<p><strong>Dificultad:</strong> " . htmlspecialchars($row['dificultad']) . "</p>";
+            echo "<p><strong>Ingredientes:</strong> " . nl2br(htmlspecialchars($row['ingredientes'])) . "</p>";
+            echo "<p><strong>Instrucciones:</strong> " . nl2br(htmlspecialchars($row['instrucciones'])) . "</p>";
+            echo "</div>";
+        }
+    } else {
+        echo "<p>No se pudieron cargar las recetas :( </p>";
+    } 
 
     pg_close($connection);
 ?>

@@ -52,7 +52,7 @@
         <ul class="user-list">
 
         <?php
-
+            include "crud.php";
         ?>
 
     </div>

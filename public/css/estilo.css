@@ -18,6 +18,8 @@ form {
 }
 
 form label {
+    font-style: oblique;
+    font: 700;
     color: #624836;
     display: block;
     margin-bottom: 5px;
