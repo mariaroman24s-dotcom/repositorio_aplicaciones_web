@@ -1,6 +1,10 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f2e9e3;
+    background-image: url("../img/Fondo para CRUD recetario.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed; 
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -126,8 +130,8 @@ textarea {
   border-radius: 5px;
   font-size: 14px;
   cursor: pointer;
-  width: auto;           /* Evita que se corte */
-  white-space: nowrap;   /* Evita que el texto se parta */
+  width: auto;    
+  white-space: nowrap; 
 }
 
 .btn-ver {
@@ -218,4 +222,18 @@ textarea {
 
 .cerrarFormulario:hover {
   color: #a94e4e;
+}
+
+.tabla-recetas td {
+    vertical-align: middle; 
+}
+
+.tabla-recetas td form {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.tabla-recetas td button {
+    vertical-align: middle;
 }

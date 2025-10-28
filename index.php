@@ -42,6 +42,7 @@
                 <h2>Añade una nueva receta</h2>
 
                 <form method="post" action="index.php" id="formReceta">
+                    <input type="hidden" name="id_receta" id="id_receta">
 
                     <label for ="nombre">Nombre:</label>
                     <input type="text" name="nombre" placeholder="Ej: Pastel de tres leches." required>
@@ -66,20 +67,15 @@
                     <input id="tiempo" type="number" name="tiempo" placeholder="En minutos" min="1" step="1" required>
 
                     <label for="dificultad">Dificultad:</label>
-                    <select id="dificutad" name="dificultad" class="form-control">
+                    <select id="dificultad" name="dificultad" class="form-control">
                         <option selected></option>
                         <option>Facil</option>
                         <option>Intermedio</option>
                         <option>Dificil</option>
                     </select>
 
-                    <?php if (isset($id_actualizar)) : ?>
-                        <button type="submit" name="actualizar">atualizar</button>
-                        <?php else : ?>
+                    <button type="submit" name="crear" id="btn-form">Crear</button>
 
-                    <button type="submit" name="crear">Crear</button>
-
-                    <?php endif; ?>
                 </form>
             </div>
         </div>
@@ -114,6 +110,23 @@
     document.querySelector(".cerrarFormulario").onclick = function() {
     document.getElementById("modalFormulario").style.display = "none";
     };
+
+    function editarReceta(id, nombre, ingredientes, instrucciones, tipo, tiempo, dificultad) {
+    document.querySelector("input[name='nombre']").value = nombre;
+    document.querySelector("textarea[name='ingredientes']").value = ingredientes;
+    document.querySelector("textarea[name='instrucciones']").value = instrucciones;
+    document.querySelector("select[name='tipo']").value = tipo;
+    document.querySelector("input[name='tiempo']").value = tiempo;
+    document.querySelector("select[name='dificultad']").value = dificultad;
+    document.getElementById("id_receta").value = id;
+
+    const boton = document.querySelector("button[name='crear']");
+    boton.name = "actualizar";
+    boton.textContent = "Actualizar";
+
+    document.getElementById("modalFormulario").style.display = "block";
+    }
+
 
     </script>
 
