@@ -70,6 +70,7 @@
                     Ver
                 </button>
             </td>";
+            //boton de editar
             echo "<td>
                     <form method='POST' action='editar.php'>
                         <input type='hidden' name='id_receta' value='" . $row['id_receta'] . "'>
@@ -77,11 +78,11 @@
                     </form>
                 </td>";
 
-            // 🔹 Botón Eliminar
+            // boton de eliminar
             echo "<td>
-                    <form method='POST' action='eliminar.php' onsubmit='return confirm(\"¿Seguro que deseas eliminar esta receta?\");'>
+                    <form method='POST' action='index.php' onsubmit='return confirm(\"¿Seguro que deseas eliminar esta receta?\");'>
                         <input type='hidden' name='id_receta' value='" . $row['id_receta'] . "'>
-                        <button class='btn-eliminar' type='submit'>Eliminar</button>
+                        <button class='btn-eliminar' type='submit' name='eliminar'>Eliminar</button>
                     </form>
                 </td>";
 
@@ -91,6 +92,27 @@
         echo "</table>";
     } else {
         echo "<p>No hay recetas por mostrar </p>";
+    }
+
+
+    //delete
+    if (isset($_POST["eliminar"])) {
+        $id_eliminar = $_POST["id_receta"];
+
+        $query = "DELETE FROM recetas WHERE id_receta = $1";
+        $prepare = pg_prepare($connection, "delete_receta", $query);
+        $result = pg_execute($connection, "delete_receta", [$id_eliminar]);
+
+        if ($result) {
+            echo "<script>
+                    alert('Receta eliminada correctamente');
+                    window.location.href='index.php';
+                </script>";
+        } else {
+            echo "<script>
+                    alert('Error al eliminar la receta');
+                </script>";
+        }
     }
 
     pg_close($connection);

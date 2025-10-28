@@ -11,6 +11,7 @@ body {
     background-color: #FFF5E1;
     padding: 20px;
     box-shadow: 0 0 20px rgb(186, 152, 139);
+    border-radius: 10px;
 }
 
 form {
@@ -31,6 +32,8 @@ form input {
     margin-bottom: 10px;
     background-color: #f0e4d7;
     border: none;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 8px;
 }
 
 select {
@@ -39,6 +42,8 @@ select {
     margin-bottom: 10px;
     background-color: #f0e4d7;
     border: none;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 8px;
 }
 
 #tiempo {
@@ -48,17 +53,22 @@ select {
     background-color: #f0e4d7;
 }
 
+#ingredientesReceta, #instruccionesReceta {
+  white-space: pre-line;
+}
+
 form button {
-    width: 15%;
+    font-size: medium;
     background-color: #c48f99;
     color: #FAFAFA;
     padding: 10px;
     border: none;
     cursor: pointer;
+    border-radius: 8px;
 }
 
 form button:hover {
-    background-color: #df7c9a;
+    background-color: #bb8b8b;
 }
 
 h2 {
@@ -79,16 +89,6 @@ textarea {
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.user-list {
-    background-color: #f3e2d0;
-    padding: 20px;
-    margin-bottom: 5px;
-    border: 1px solid #c1a38e;
-}
-/* 
-.user-list:hover {
-    background-color: #eed3b7;
-} */
 
 .tabla-recetas {
     width: 100%;
@@ -153,7 +153,6 @@ textarea {
   background-color: #a94e4e;
 }
 
-/* Fondo oscuro del modal */
 .modal {
   display: none;
   position: fixed;
@@ -166,7 +165,6 @@ textarea {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* Contenido del modal */
 .modal-content {
   background-color: #fff;
   margin: 8% auto;
@@ -177,13 +175,11 @@ textarea {
   animation: aparecer 0.3s ease;
 }
 
-/* Animación */
 @keyframes aparecer {
   from { transform: scale(0.9); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
 
-/* Botón cerrar */
 .cerrar {
   color: #c45b5b;
   float: right;
@@ -193,5 +189,33 @@ textarea {
 }
 
 .cerrar:hover {
+  color: #a94e4e;
+}
+
+#btn_agregar {
+  background-color: #d6a4a4;
+  color: white;
+  border: #a94e4e;
+  font-size: large;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: auto;
+  white-space: nowrap;
+}
+
+#btn_agregar:hover {
+    background-color: #bb8b8b;
+}
+
+.cerrarFormulario {
+  color: #c45b5b;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cerrarFormulario:hover {
   color: #a94e4e;
 }
