@@ -35,23 +35,64 @@
     }
 
     //read
-    $query = "SELECT * FROM recetas ORDER BY id_receta DESC";
+    $query = "SELECT id_receta, nombre, tipo, dificultad, tiempo, ingredientes, instrucciones FROM recetas ORDER BY id_receta DESC";
     $result = pg_query($connection, $query);
 
     if ($result && pg_num_rows($result) > 0) {
+
+        echo "<table class='tabla-recetas'>";
+        echo "<tr>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Tiempo</th>
+                <th>Dificultad</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>";
+
         while ($row = pg_fetch_assoc($result)) {
-            echo "<div class='receta-item'>";
-            echo "<h3>" . htmlspecialchars($row['nombre']) . "</h3>";
-            echo "<p><strong>Tipo:</strong> " . htmlspecialchars($row['tipo']) . "</p>";
-            echo "<p><strong>Tiempo:</strong> " . htmlspecialchars($row['tiempo']) . " min</p>";
-            echo "<p><strong>Dificultad:</strong> " . htmlspecialchars($row['dificultad']) . "</p>";
-            echo "<p><strong>Ingredientes:</strong> " . nl2br(htmlspecialchars($row['ingredientes'])) . "</p>";
-            echo "<p><strong>Instrucciones:</strong> " . nl2br(htmlspecialchars($row['instrucciones'])) . "</p>";
-            echo "</div>";
+            echo "<tr>";
+            echo "<td>" . htmlspecialchars($row['nombre']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['tipo']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['tiempo']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['dificultad']) . "</td>";
+            echo "<td>
+                    <button class='btn-ver' 
+                        onclick='mostrarReceta(
+                            " . json_encode($row['nombre']) . ",
+                            " . json_encode($row['ingredientes']) . ",
+                            " . json_encode($row['instrucciones']) . ",
+                            " . json_encode($row['tipo']) . ",
+                            " . json_encode($row['tiempo']) . ",
+                            " . json_encode($row['dificultad']) . "
+                        )'>
+                        Ver
+                    </button>
+                </td>";
+
+            echo "<td>
+                    <form method='POST' action='editar.php'>
+                        <input type='hidden' name='id_receta' value='" . $row['id_receta'] . "'>
+                        <button class='btn-editar' type='submit'>Editar</button>
+                    </form>
+                </td>";
+
+            // 🔹 Botón Eliminar
+            echo "<td>
+                    <form method='POST' action='eliminar.php' onsubmit='return confirm(\"¿Seguro que deseas eliminar esta receta?\");'>
+                        <input type='hidden' name='id_receta' value='" . $row['id_receta'] . "'>
+                        <button class='btn-eliminar' type='submit'>Eliminar</button>
+                    </form>
+                </td>";
+
+            echo "</tr>";
         }
+
+        echo "</table>";
     } else {
-        echo "<p>No se pudieron cargar las recetas :( </p>";
-    } 
+        echo "<p>No hay recetas por mostrar </p>";
+    }
 
     pg_close($connection);
 ?>

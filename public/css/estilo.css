@@ -80,12 +80,118 @@ textarea {
 }
 
 .user-list {
-    background-color: #f0e4d7;
-    padding: 10px;
+    background-color: #f3e2d0;
+    padding: 20px;
     margin-bottom: 5px;
     border: 1px solid #c1a38e;
 }
-
+/* 
 .user-list:hover {
     background-color: #eed3b7;
+} */
+
+.tabla-recetas {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.tabla-recetas th {
+    background-color: #c48f99;
+    color: white;
+    text-align: left;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.tabla-recetas td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+}
+
+.tabla-recetas tr:hover {
+    background-color: #fff6fe;
+    transition: 0.2s;
+}
+
+.btn-ver,
+.btn-editar,
+.btn-eliminar {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  width: auto;           /* Evita que se corte */
+  white-space: nowrap;   /* Evita que el texto se parta */
+}
+
+.btn-ver {
+  background-color: #f1f1f1;
+  color: #333;
+}
+
+.btn-editar {
+  background-color: #d6a4a4;
+  color: white;
+}
+
+.btn-eliminar {
+  background-color: #c45b5b;
+  color: white;
+}
+
+.btn-editar:hover {
+  background-color: #bb8b8b;
+}
+
+.btn-eliminar:hover {
+  background-color: #a94e4e;
+}
+
+/* Fondo oscuro del modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Contenido del modal */
+.modal-content {
+  background-color: #fff;
+  margin: 8% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 50%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  animation: aparecer 0.3s ease;
+}
+
+/* Animación */
+@keyframes aparecer {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Botón cerrar */
+.cerrar {
+  color: #c45b5b;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cerrar:hover {
+  color: #a94e4e;
 }
