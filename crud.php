@@ -58,19 +58,18 @@
             echo "<td>" . htmlspecialchars($row['tiempo']) . "</td>";
             echo "<td>" . htmlspecialchars($row['dificultad']) . "</td>";
             echo "<td>
-                    <button class='btn-ver' 
-                        onclick='mostrarReceta(
-                            " . json_encode($row['nombre']) . ",
-                            " . json_encode($row['ingredientes']) . ",
-                            " . json_encode($row['instrucciones']) . ",
-                            " . json_encode($row['tipo']) . ",
-                            " . json_encode($row['tiempo']) . ",
-                            " . json_encode($row['dificultad']) . "
-                        )'>
-                        Ver
-                    </button>
-                </td>";
-
+                <button class='btn-ver' 
+                    onclick='mostrarReceta(
+                        " . json_encode($row['nombre']) . ",
+                        " . json_encode($row['ingredientes']) . ",
+                        " . json_encode($row['instrucciones']) . ",
+                        " . json_encode($row['tipo']) . ",
+                        " . json_encode($row['tiempo']) . ",
+                        " . json_encode($row['dificultad']) . "
+                    )'>
+                    Ver
+                </button>
+            </td>";
             echo "<td>
                     <form method='POST' action='editar.php'>
                         <input type='hidden' name='id_receta' value='" . $row['id_receta'] . "'>
